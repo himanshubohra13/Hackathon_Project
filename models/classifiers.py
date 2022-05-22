@@ -154,6 +154,19 @@ def predict_malaria(img):
     pred = class2label[np.argmax(model3.predict(img)[0])]
     return pred 
 
+def predict_drug(symptom, drugname = None):
+    df_all = pd.read_csv('models/DrugRecommendationDataUCL.csv' , parse_dates = ["date"])
+    print(df_all.shape)
+    filtered = df_all[df_all['condition'] == symptom].sort_values(by = ['usefulCount', 'rating'], ascending = False).head(20).sort_values(by = ['rating'], ascending = False)
+    rdrugs = list(filtered['drugName'].value_counts()[:3].index)
+    print(rdrugs)
+    res = ''
+    if drugname is not None and drugname in list(filtered['drugName'].value_counts()[:5].index):
+        res = "If you see recovery in yourself by consuming this drug, you may continue taking it. However if no signs of recovery are observed, you may prefer above mentioned drugs after consulting from the doctor."
+    else:
+        res = "We strongly recommend to change you medicine and follow our recommendations based on user reviews and ratings for these particular drugs!!"
+    return rdrugs , res
+
 
 def predict_disease(user_symptoms, days=5):
     training = pd.read_csv('models/training.csv')
