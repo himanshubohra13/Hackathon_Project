@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Lab Tests</title>
+</head>
+<body>
+    
+    <nav class="nav-extended">
+        <div class="nav-wrapper container">
+            <a href="" class="brand-logo">HomeCare.ai</a>
+            <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="" class="btn"> Search for labs/tests <i class="material-icons left">search</i> </a></li>
+                <li><a href="{% url 'index' %}" class="btn"> Back to Home <i class="material-icons right"> home </i> </a></li>
+            </ul>
+        </div>
+        <div class="nav-content container">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a href="">Order Medicines</a></li>
+                <li class="tab"><a class="active" href="">Lab Tests</a></li>
+                <li class="tab"><a href="">Healthcare Products</a></li>
+                <li class="tab"><a href="">Health Packages</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    
+  
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="{% url 'index' %}">Home</a></li>
+    </ul>
+    
+    <div id="" class="col s12"></div>
+
+    <section class="section container">
+        <div class="carousel carousel-slider">
+            <a class="carousel-item" href=""><img src="{% static 'labTests/1.jpg' %}"></a>
+            <a class="carousel-item" href=""><img src="{% static 'labTests/2.jpg' %}"></a>
+            <a class="carousel-item" href=""><img src="{% static 'labTests/3.jpg' %}"></a>
+            <a class="carousel-item" href=""><img src="{% static 'labTests/4.jpg' %}"></a>
+        </div>
+    </section>
+
+    <section class="section" id="">
+        <div class="container scrollspy" id="photo">
+            <div class="row">
+                <div class="col s12 l3">
+                    <img src="{% static 'labTests/1.svg' %}" alt="" class="responsive-img materialboxed">
+                    <h5 class="indigo-text text-darken-2"> Trusted Labs </h5>
+                    <p>Every test booked is conducted by certified labs that are 100% verified and trustworthy</p>
+                </div>
+                <div class="col s12 l3">
+                    <img src="{% static 'labTests/2.svg' %}" alt="" class="responsive-img materialboxed">
+                    <h5 class="indigo-text text-darken-2"> Home Visits </h5>
+                    <p>With us, you get a FREE sample pick-up by professional phlebotomists from your home or preferred location</p>
+                </div>
+                <div class="col s12 l3">
+                    <img src="{% static 'labTests/3.svg' %}" alt="" class="responsive-img materialboxed">
+                    <h5 class="indigo-text text-darken-2"> Timely and Accurate Reports </h5>
+                    <p>Once collected, samples will be sent to labs for processing. Detailed reports will be shared within a stipulated timeline</p>
+                </div>
+                <div class="col s12 l3">
+                    <img src="{% static 'labTests/4.svg' %}" alt="" class="responsive-img materialboxed">
+                    <h5 class="indigo-text text-darken-2"> Upto 50% OFF </h5>
+                    <p>Here, you save at every step! On diagnostic tests, get up to 70% OFF on various tests and test packages.</p>
+                </div>
+            </div>
+        </div>    
+    </section>
+
+    <div class="container" id="">
+        <div class="row">
+            {% for test in tests %} 
+            <div class="col s12 m4">
+                <div class="card hoverable">
+                    <div class="card-image waves-effect waves-block waves-light">
+                      <img class="activator" src="{{test.photo.url}}" style="height: 140px;">
+                    </div>
+                    <div class="card-content">
+                      <span class="card-title activator grey-text text-darken-4">{{test.testName}}<i class="material-icons right">more_vert</i></span>
+                      <p><a href="">{{test.cost}}</a></p>
+                    </div>
+                    <div class="card-action"> <a href="" class="btn light-blue darken-4"> Book <span> <i class="material-icons right"> send </i> </span> </a> </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">{{test.testName}}<i class="material-icons right">close</i></span>
+                      <p>{{test.description}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %} 
+        </div>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-trigger").dropdown();
+            $(".sidenav").sidenav();
+            $(".tooltipped").tooltip();
+            $('.carousel').carousel({
+                dist: 0,
+                duration: 50,
+                indicators: true
+            });
+      });
+    </script>
+</body>
+</html>
